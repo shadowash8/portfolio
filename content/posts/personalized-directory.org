@@ -1,0 +1,14 @@
+#+TITLE: personalized directory
+#+DATE: [2026-03-09 Mon 08:00]
+
+create a file =~/.config/user-dirs.dirs=
+#+begin_src conf
+XDG_DESKTOP_DIR="$HOME/desktop"
+XDG_DOWNLOAD_DIR="$HOME/downloads"
+XDG_TEMPLATES_DIR="$HOME/templates"
+XDG_PUBLICSHARE_DIR="$HOME/public"
+XDG_DOCUMENTS_DIR="$HOME/documents"
+XDG_MUSIC_DIR="$HOME/moosic"
+XDG_PICTURES_DIR="$HOME/pictures"
+XDG_VIDEOS_DIR="$HOME/videos"
+#+end_src

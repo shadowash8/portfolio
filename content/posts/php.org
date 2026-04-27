@@ -1,0 +1,221 @@
+#+TITLE: php: a guide
+#+DATE: [2026-02-20 Fri 07:20]
+
+* installation
+[[https://www.php.net/downloads.php][link]]
+* getting started
+After you have installed php you can start a server using: 
+#+begin_src sh
+php -S localhost:8000
+#+end_src
+
+and you can navigate it using =http://localhost:8000/filename.php=
+
+* Perks and Quirks of php
+- Its case sensitive
+
+* format
+php is defined inside a html format but as a tag
+=<?php *code here* ?>=
+
+the file name for a php porgram is =.php=
+
+heres a example code:
+#+begin_src html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Example</title>
+    </head>
+    <body>
+
+        <?php
+            echo "Hi, I'm a PHP script!";
+        ?>
+
+    </body>
+</html>
+#+end_src
+
+* variables
+They are defined using =$= keyword
+The good thing is that php handles the types and we dont have to define it.
+#+begin_src php
+  $a = 20;
+  $b = 30;
+
+  $sum = $a - $b;
+
+  echo $sum;
+#+end_src
+
+#+RESULTS:
+: -10
+
+* data types
+1. String
+2. Integer
+3. Float
+4. Boolean
+5. Array
+6. NULL
+
+#+begin_src php
+  $a = "Hi This is a String";
+  echo var_dump($a);
+
+  $b = "2232";
+  echo var_dump($b);
+#+end_src
+
+#+RESULTS:
+: string(19) "Hi This is a String"
+: string(4) "2232"
+
+* comments
+just like css
+=/* comment */=
+
+
+* conditionals
+** if
+#+begin_src php
+  if (condition) {
+    then do this;
+  }
+#+end_src
+** if-else
+#+begin_src php
+  if (condition) {
+    then do this;
+  } else {
+    otherwise do this;
+  }
+#+end_src
+
+** examples
+*** marks
+#+begin_src php
+  $marks = 80;
+
+  if ($marks >= 60) {
+      echo "You have passed!";
+  } else {
+      echo "You have failed.";
+  }
+#+end_src
+
+#+RESULTS:
+: You have passed!
+
+* loops
+** for loops
+#+begin_src php
+  for ($i=1;$i<=5;$i++) {
+      echo $i;
+  }
+#+end_src
+
+#+RESULTS:
+: 12345
+
+** for each (arrays)
+#+begin_src php
+  foreach ($array as $value) {
+      /* code here */
+  }
+#+end_src
+
+* string functions
+| Function           | Description                                                              |
+|--------------------+--------------------------------------------------------------------------|
+| =strlen()=         | Returns the length of a string (i.e. total number of characters)         |
+| =str_word_count()= | Counts the number of words in a string                                   |
+| =strrev()=         | Reverses a string                                                        |
+| =strpos()=         | Searches for specific text and returns position of first match or false  |
+| =str_replace()=    | Replaces some characters with other characters in a string               |
+| =substr()=         | Returns a part of a string                                               |
+| =strtolower()=     | Converts a string to lowercase                                           |
+| =substr_count()=   | Counts the number of times a substring occurs in a string                |
+| =ucwords()=        | Converts the first character of each word to uppercase                   |
+| =trim()=           | Removes whitespace and predefined characters from both sides of a string |
+
+#+begin_src php
+  $str = "   This is a example string   ";
+
+  echo "Original string:".$str."\n";
+
+  /* Functions */
+  echo "Length: ".strlen($str)."\n";
+  echo "Word Count: ".str_word_count($str)."\n";
+  echo "Reverse: ".strrev($str)."\n";
+  echo "Find text: ".strpos($str, "is")."\n";
+  echo "Replace: ".str_replace("example","php",$str)."\n";
+  echo "lowercase: ".strtolower($str)."\n";
+#+end_src
+
+#+RESULTS:
+: Original string:   This is a example string   
+: Length: 30
+: Word Count: 5
+: Reverse:    gnirts elpmaxe a si sihT   
+: Find text: 5
+: Replace:    This is a php string   
+: lowercase:    this is a example string   
+
+* arrays
+#+begin_src php
+  /* only values */
+  $a = array(1, 5, 4, 9, 0);
+
+  /* keys and values */
+  $marks = array("english" => "75", "Maths" => "70", "Physics" => "80");
+#+end_src
+
+#+begin_src php
+  $a = array(1, 5, 4, 9, 8);
+  
+  $b=0;
+  foreach ($a as $c) {
+      $b=$b+$c;
+  }
+
+  echo $b;
+#+end_src
+
+#+RESULTS:
+: 27
+
+#+begin_src php
+  $marks = array("english" => "69", "Maths" => "70", "Physics" => "80");
+
+  if ($marks["english"] == 69) {
+      echo "You have scored ".$marks["english"]."(nice) in english";
+  } else {
+      echo "You have scored ".$marks["english"]." in english";
+  }
+#+end_src
+
+#+RESULTS:
+: You have scored 69(nice) in english
+
+* functions
+#+begin_src php
+  function($arg) {
+      /* code */
+  }
+#+end_src
+
+#+begin_src php
+  function sum(int $x, int $y) {
+      $z = $x + $y;
+
+      return $z;
+  }
+
+  echo "5 + 8 = ".sum(5, 8); 
+#+end_src
+
+#+RESULTS:
+: 5 + 8 = 13
+

@@ -1,0 +1,65 @@
+#+TITLE: hibernation on btrfs
+#+DATE: [2026-03-03 Tue 07:20]
+
+* limitations
+#+begin_important
+There are specific limitations for Btrfs and Linux swap subsystems:
+- Swap files on multi-device filesystems are *not* supported.
+- Data profile must be *single*.
+- Snapshots cannot be created for subvolumes containing active swap files.
+- Swap files must be pre-allocated (no holes) and have the +NOCOW+ attribute.
+#+end_important
+
+* create subvolume and swapfile
+To avoid snapshot issues, create a dedicated subvolume:
+
+#+begin_src bash
+# Create the subvolume
+sudo btrfs subvolume create /swap
+
+# Create a 4 GiB swap file (handles NOCOW and pre-allocation automatically)
+sudo btrfs filesystem mkswapfile --size 4g --uuid clear /swap/swapfile
+
+# Activate the swap
+sudo swapon /swap/swapfile
+#+end_src
+
+* =fstab= entry
+Add the following to =/etc/fstab=:
+#+begin_src conf
+/swap/swapfile none swap defaults 0 0
+#+end_src
+
+* configure hibernation
+To hibernate, the kernel needs to know where the swap resides. 
+
+1. *Find the Resume Offset:*
+   #+begin_src bash
+   sudo btrfs inspect-internal map-swapfile -r /swap/swapfile
+   #+end_src
+   /Example Output: 6841523/
+
+2. *Find the UUID:*
+   #+begin_src bash
+   findmnt -no UUID -T /swap/swapfile
+   #+end_src
+
+3. *Update Bootloader:*
+   In your boot entry (e.g., =/boot/loader/entries/arch.conf=), append the parameters:
+   #+begin_example
+   options ... resume=UUID=<YOUR_UUID> resume_offset=<YOUR_OFFSET>
+   #+end_example
+
+* final checklist
+- [ ] *mkinitcpio.conf:* Ensure ~resume~ is in the ~HOOKS=(...)~ list (after ~udev~).
+- [ ] *Regenerate:* Run ~sudo mkinitcpio -P~.
+- [ ] *Priority:* Check with ~swapon --show~. Ensure the file has lower priority than zram/zswap.
+- [ ] *Safe Entry:* Keep a fallback boot entry *without* resume parameters.
+  
+* issues
+** troubleshooting: Black/Blank Screen
+If you hang on wake, try removing the =kms= module from =mkinitcpio.conf= and regenerate:
+#+begin_src bash
+sudo mkinitcpio -P
+#+end_src
+

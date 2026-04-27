@@ -1,0 +1,28 @@
+#+TITLE: emacs on android
+#+DATE: [2026-03-08 Thu 07:20]
+
+
+emacs on android is a interesting task to accomplish
+
+there are 3 ways to get it working
+
+* [[https://github.com/shadowash8/organize][organize]]
+this is my custom app i build that parses through your org notes and shows them in a beautiful list format
+it also has a schedule/week/month calendar view with all your tasks and reminders on one page
+
+* emacs on termux
+this is the easier way as you just install termux from fdroid and you can install emacs using
+`pkg install emacs'
+after that you can start using emacs or clone your preferd config
+
+this is straight up raw emacs in a terminal with no gui fancy stuff like no images, no fancy headings, yeah just bare minimum u want on the go
+
+
+* emacs gui
+this is the hard part you need two things
+- emacs native
+- termux
+  signed with emacs keystore
+
+its a lot of hassle and it will just break if any of the thigs are messed up either apps updating or a system update 
+just dont do this
