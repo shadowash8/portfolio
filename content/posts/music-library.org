@@ -1,0 +1,154 @@
+#+TITLE: music library
+#+DATE: [2026-03-21 Sat 07:20]
+
+* overview
+my music library is divided into these two main folders
+1. FLACs - =~/moosic=
+2. OPUS - =~/documents/moosic=
+
+the albums are stored with this naming convention: =~/moosic/$(album_artist)/$(album)=
+
+example:
+#+begin_src
+  moosic
+  │   ├── BULLY
+  │   │   ├── 01 KING.flac
+  │   │   ├── 02 THIS A MUST.flac
+  │   │   ├── 02 THIS A MUST.lrc
+  │   │   ├── 03 FATHER (feat. Travis Scott).flac
+  │   │   ├── 03 FATHER (feat. Travis Scott).lrc
+  │   │   ├── 04 ALL THE LOVE (feat. Andre Troutman).flac
+  │   │   ├── 04 ALL THE LOVE (feat. Andre Troutman).lrc
+  │   │   ├── 05 PUNCH DRUNK.flac
+  │   │   ├── 05 PUNCH DRUNK.lrc
+  │   │   ├── 06 WHATEVER WORKS.flac
+  │   │   ├── 06 WHATEVER WORKS.lrc
+  │   │   ├── 07 MAMA’S FAVORITE.flac
+  │   │   ├── 07 MAMA’S FAVORITE.lrc
+  │   │   ├── 08 SISTERS AND BROTHERS.flac
+  │   │   ├── 09 BULLY (feat. CeeLo Green).flac
+  │   │   ├── 09 BULLY (feat. CeeLo Green).lrc
+  │   │   ├── 10 HIGHS AND LOWS.flac
+  │   │   ├── 10 HIGHS AND LOWS.lrc
+  │   │   ├── 11 I CAN’T WAIT.flac
+  │   │   ├── 11 I CAN’T WAIT.lrc
+  │   │   ├── 12 WHITE LINES (feat. Andre Troutman).flac
+  │   │   ├── 12 WHITE LINES (feat. Andre Troutman).lrc
+  │   │   ├── 13 CIRCLES.flac
+  │   │   ├── 14 PREACHER MAN.flac
+  │   │   ├── 15 BEAUTY AND THE BEAST.flac
+  │   │   ├── 15 BEAUTY AND THE BEAST.lrc
+  │   │   ├── 16 DAMN.flac
+  │   │   ├── 17 LAST BREATH (feat. Peso Pluma).flac
+  │   │   ├── 17 LAST BREATH (feat. Peso Pluma).lrc
+  │   │   ├── 18 THIS ONE HERE.flac
+  │   │   ├── 18 THIS ONE HERE.lrc
+  │   │   ├── BULLY.m3u
+  │   │   └── cover.jpg
+#+end_src
+
+
+* getting the music
+i use =TIDAL= to get my FLACs, and you can find other "100% legal" sources on [[https://fmhy.net][fmhy]]
+
+you can also rip music from CD's if you have access to them using various tools
+
+i always get FLACs as my main source of music or get a high quailty opus download if not possible 
+
+* managing the media
+after getting the music from your source of choice you can save them according to this convention =~/moosic/$(album_artist)/$(album)=
+
+now you dont want to manually copy over the FLACs on your phone to listen on the go, its just overkill and you are not even gonna notice any difference if you are anyways going to use bluetooth headphoes.
+
+now converting these high quailty Lossless FLACs to opus 320kbps is the way to go, you wont even notice a difference unless you have a $5000 music setup
+instead of doing this manually, i have made a script that checks for FLAC files in the =~/moosic= and converts them from FLAC -> opus 320kbps, and copy them over to =~/documents/moosic=
+i also have a check when i have a opus file in =~/moosic= it just copies over it to =~/documents/moosic= and creates all the appropriate directories
+#+begin_src bash
+#!/bin/bash
+
+# Configuration
+SOURCE_DIR="~/moosic"
+MIRROR_DIR="~/documents/moosic"
+
+# Ensure the source exists so we don't do something stupid
+if [ ! -d "$SOURCE_DIR" ]; then
+    echo "Error: Source directory not found."
+    exit 1
+fi
+
+echo "Starting the Smooth Operation. Sit tight."
+
+# Use 'find' with -print0 to handle spaces in filenames (don't be a rookie)
+find "$SOURCE_DIR" -type f -name "*.flac" -print0 | while IFS= read -r -d '' file; do
+
+    # Calculate the relative path from the source root
+    rel_path="${file#$SOURCE_DIR/}"
+
+    # Define the target path (swap .flac for .opus)
+    target_path="$MIRROR_DIR/${rel_path%.flac}.opus"
+
+    # 1. Create the subfolder structure in the mirror
+    mkdir -p "$(dirname "$target_path")"
+
+    # 2. Check if the file already exists to save time
+    if [ ! -f "$target_path" ]; then
+        echo "Converting: $rel_path"
+        # -n tells ffmpeg not to overwrite; -v warning keeps the logs clean
+        ffmpeg -v warning -n -i "$file" -c:a libopus -b:a 320k -map_metadata 0 "$target_path" < /dev/null
+    else
+        echo "Skipping: $rel_path (Already exists)"
+    fi
+done
+
+echo "Startint the Perfect Execution. Hold on."
+
+# Use 'find' with -print0 to handle spaces in filenames (don't be a rookie)
+find "$SOURCE_DIR" -type f -name "*.opus" -print0 | while IFS= read -r -d '' file; do
+
+    # Calculate the relative path from the source root
+    rel_path="${file#$SOURCE_DIR/}"
+
+    # Define the target path (swap .flac for .opus)
+    target_path="$MIRROR_DIR/$rel_path"
+
+    # 1. Create the subfolder structure in the mirror
+    mkdir -p "$(dirname "$target_path")"
+
+    # 2. Check if the file already exists to save time
+    if [ ! -f "$target_path" ]; then
+        echo "Copying existing Opus: $rel_path"
+        cp "$file" "$target_path"
+    else
+        echo "Skipping: $rel_path (Already exists)"
+    fi
+done
+
+echo "Done. Your library is now as lean as the smooth operator."
+#+end_src
+
+* tagging
+tagging the music is the hardest thing if you dont know how to do it.
+a simple way to do it without a hassle is to use [[https://picard.musicbrainz.org/][musicbrainz picard]]
+
+picard is a open source app that handles the tagging for you
+you just have to click scan for the files and it tags them for you, getting the correct metadata and cover image!
+you can configure almost everything it does 
+
+* syncing
+now that you have your FLAC and opus library setup, you need to sync the opus library to your phone to listen to music on the go.
+i use [[https://syncthing.net/][syncthing]] to do the same, its also another open source software, which syncs folders between devices over LAN or your wifi.
+
+i use [[https://github.com/researchxxl/syncthing-android][syncthing-android]] client on my phone, or you could even use termux to run the official syncthing server like on linux.
+
+* media players
+for the desktop i use [[https://www.musicpd.org/][mpd]] with [[https://rmpc.mierak.dev/][rmpc]] as the client and it just does everything one needs.
+
+for android things are a bit interesting, there are only a handful apps for music players which are free and opensource
+the best two apps are
+1. [[https://github.com/theovilardo/PixelPlayer][PixelPlayer]]
+   it is the best app which i could find with, everything from auto generated playlists to lyrics support with a really beautiful ui
+
+   the only con is the gemini ai features, but it may be a pro for others
+2. [[https://github.com/OxygenCobalt/Auxio][Auxio]]
+   this might have been the best and the cleanest music player if it had lyrics support, but the dev is fixated over not supporting it sadly.
+   it does everything the best it can and is the best music player if you dont want lyrics support
