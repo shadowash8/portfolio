@@ -1,0 +1,22 @@
+#+TTILE: organize
+#+URL: https://github.com/shadowash8/organize
+#+TAGS: React Native, Expo, uniorg
+
+A all in one mobile app to read your org notes and agenda in a beautiful manner on your phone
+
+** Features
+1. Home page listing all the items in your org folder
+2. Agenda view to see all your events
+3. Not stare at a terminal screen on your phone!!
+
+** Stack
+- React Native with Expo
+- uniorg-parse
+- react-native-big-calendar
+- AsyncStorage
+
+
+** Screenshots
+| Home                        | Calendar                                 | Settings                        |
+|-----------------------------+------------------------------------------+---------------------------------|
+| [[/projects/organize/home.jpg]] | [[/projects/organize/calendar_schedule.jpg]] | [[/projects/organize/settings.jpg]] |

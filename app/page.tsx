@@ -1,4 +1,5 @@
 import PostsList from "./components/posts";
+import ProjectsList from "./components/projects";
 
 export default function Home() {
     return (
@@ -12,10 +13,19 @@ export default function Home() {
                 </p>
             </header>
 
-            <h2 className="mb-4 text-xl font-semibold tracking-tighter">
-                Posts
-            </h2>
-            <PostsList />
+            <div className="mb-12">
+                <h2 className="mb-4 text-xl font-semibold tracking-tighter">
+                    Posts
+                </h2>
+                <PostsList />
+            </div>
+
+            <div className="mb-12">
+                <h2 className="mb-4 text-xl font-semibold tracking-tighter">
+                    Projects
+                </h2>
+                <ProjectsList />
+            </div>
         </section>
     );
 }

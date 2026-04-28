@@ -7,6 +7,7 @@ import stringify from 'rehype-stringify';
 import extractKeywords from 'uniorg-extract-keywords';
 
 const postsDirectory = path.join(process.cwd(), 'content/posts');
+const projectsDirectory = path.join(process.cwd(), 'content/projects');
 
 function getReadableDate(dateString: String) {
     let formattedDate = null;
@@ -82,4 +83,53 @@ export async function getAllPosts() {
     return posts
         .filter((post) => post !== null)
         .sort((a, b) => new Date(b.date || 0).getTime() - new Date(a.date || 0).getTime());
+}
+
+export async function getProjectBySlug(slug: string) {
+    try {
+        const realSlug = slug.replace(/\.org$/, '');
+        const fullPath = path.join(projectsDirectory, `${realSlug}.org`);
+
+        if (!fs.existsSync(fullPath)) {
+            return null;
+        }
+
+        const fileContents = fs.readFileSync(fullPath, 'utf8');
+
+        // The unified processor
+        const processor = unified()
+            .use(parse)
+            .use(extractKeywords)
+            .use(uniorg2rehype)
+            .use(stringify);
+
+        const result = await processor.process(fileContents);
+
+        return {
+            slug: realSlug,
+            content: result.value.toString(),
+            title: (result.data as any)?.title || realSlug,
+            tags: (result.data as any)?.tags || null,
+            url: (result.data as any)?.url || null,
+        };
+    } catch (e) {
+        console.error("Error parsing org file:", e);
+        return null;
+    }
+}
+
+export async function getAllProjects() {
+    const filenames = fs.readdirSync(projectsDirectory);
+
+    const posts = await Promise.all(
+        filenames
+            .filter((file) => /\.org$/.test(file))
+            .map(async (file) => {
+                const slug = file.replace(/\.org$/, '');
+                return await getProjectBySlug(slug);
+            })
+    );
+
+    return posts
+        .filter((post) => post !== null);
 }
