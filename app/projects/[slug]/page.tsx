@@ -1,5 +1,6 @@
 import { getProjectBySlug } from '@/app/lib/org';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
@@ -13,9 +14,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     return (
         <article>
             <header className="mb-8">
-                <h1 className="text-2xl font-semibold tracking-tighter">
+                <Link href={post.url} className="text-2xl font-semibold tracking-tighter">
                     {post.title}
-                </h1>
+                </Link>
                 {post.tags && <p className="text-neutral-400 text-sm">{post.tags}</p>}
             </header>
 
