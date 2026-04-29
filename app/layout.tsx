@@ -1,15 +1,9 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Lora } from "next/font/google";
 import { Navbar } from './components/nav'
 import "./globals.css";
 
-const geistSans = Geist({
-    variable: "--font-geist-sans",
-    subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-    variable: "--font-geist-mono",
+const font = Lora({
     subsets: ["latin"],
 });
 
@@ -26,9 +20,8 @@ export default function RootLayout({
     return (
         <html
             lang="en"
-            className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
         >
-            <body className="antialiased max-w-xl mx-4 md:mx-auto my-8">
+            <body className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-8`}>
                 <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0">
                     <Navbar />
                     {children}
