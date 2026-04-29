@@ -12,7 +12,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     }
 
     return (
-        <article>
+        <article className="mb-8">
             <header className="mb-8">
                 <Link href={post.url} className="text-2xl font-semibold tracking-tighter">
                     {post.title}
