@@ -1,0 +1,14 @@
+* my portfolio
+this is my portfolio website written in typescript and org-mode
+
+
+* stack
+- next.js
+- uniorg
+- tailwind
+
+* building
+#+begin_src bash
+  pnpm install
+  pnpm dev
+#+end_src
