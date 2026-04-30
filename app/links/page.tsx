@@ -1,4 +1,4 @@
-import Link from "next/link";
+import CustomLink from '@/app/components/ui/links'
 
 const socialLinks = {
     "https://github.com/shadowash8": {
@@ -37,12 +37,11 @@ export default function LinksPage() {
                 <div className="flex flex-col gap-6">
                     {Object.entries(socialLinks).map(([href, { name, description }]) => (
                         <div key={href} className="flex flex-col">
-                            <Link
+                            <CustomLink
                                 href={href}
-                                className="hover:underline decoration-neutral-400 underline-offset-4 w-fit"
                             >
                                 {name}
-                            </Link>
+                            </CustomLink>
                             <p className="dark:text-neutral-400 text-sm">
                                 {description}
                             </p>
@@ -56,13 +55,12 @@ export default function LinksPage() {
                 <h2 className="text-xl mb-4 tracking-tighter">cool people</h2>
                 <div className="flex flex-row flex-wrap gap-2">
                     {Object.entries(peopleLinks).map(([href, { name }]) => (
-                        <Link
+                        <CustomLink
                             href={href}
                             key={href}
-                            className="hover:underline decoration-neutral-400 underline-offset-4 w-fit"
                         >
                             {name}
-                        </Link>
+                        </CustomLink>
                     ))}
                 </div>
             </div>
