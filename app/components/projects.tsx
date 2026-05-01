@@ -11,7 +11,7 @@ export default async function ProjectsList() {
                         <span>
                             {project.title}
                         </span>
-                        <span className="text-neutral-400 tabular-nums text-sm">
+                        <span className="text-neutral-600 dark:text-neutral-400 tabular-nums text-sm">
                             {project.tags}
                         </span>
                     </div>
