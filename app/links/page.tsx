@@ -14,16 +14,29 @@ const socialLinks = {
 const peopleLinks = {
     "https://jvscholz.com/": {
         name: "jvscholz",
+        description: "the god himself"
     },
     "https://jkwon.co/": {
         name: "jkwon",
+        description: "mini james"
+    },
+    "https://www.youtube.com/@i_kkoh/": {
+        name: "ipl",
+        description: "he who too cool for a website",
     },
     "https://tokisuno.rocks/": {
         name: "tokisuno",
+        description: "playes too much cs2"
     },
     "https://nibirsan.org/": {
         name: "nibirsan",
+        description: "he who does everything"
     },
+    "https://venusiam.vercel.app/": {
+        name: "afra",
+        description: "very hardworking"
+    },
+
 }
 
 export default function LinksPage() {
@@ -53,14 +66,18 @@ export default function LinksPage() {
 
             <div>
                 <h2 className="text-xl mb-4 tracking-tighter">cool people</h2>
-                <div className="flex flex-row flex-wrap gap-2">
-                    {Object.entries(peopleLinks).map(([href, { name }]) => (
-                        <CustomLink
-                            href={href}
-                            key={href}
-                        >
-                            {name}
-                        </CustomLink>
+                <div className="flex flex-col flex-wrap gap-2">
+                    {Object.entries(peopleLinks).map(([href, { name, description }]) => (
+                        <div key={href} className="flex flex-col">
+                            <CustomLink
+                                href={href}
+                            >
+                                {name}
+                            </CustomLink>
+                            <p className="dark:text-neutral-400 text-sm">
+                                {description}
+                            </p>
+                        </div>
                     ))}
                 </div>
             </div>
