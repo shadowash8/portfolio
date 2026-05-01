@@ -1,7 +1,7 @@
 import PostsList from "./components/posts";
 import ProjectsList from "./components/projects";
 
-export default function Home() {
+export default function HomePage() {
     return (
         <section>
             <header className="mb-12">

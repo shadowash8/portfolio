@@ -1,6 +1,6 @@
 import PostsList from "@/app/components/posts";
 
-export default async function Posts() {
+export default async function PostsPage() {
     return (
         <section>
             <h1 className="mb-4 text-2xl font-semibold tracking-tighter">Posts</h1>

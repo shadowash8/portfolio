@@ -1,6 +1,5 @@
 import { getProjectBySlug } from '@/app/lib/org';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import CustomLink from '@/app/components/ui/links';
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
