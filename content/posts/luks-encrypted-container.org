@@ -1,0 +1,48 @@
+#+TITLE: luks encrypted container
+#+DATE: [2026-05-02 Sat 09:00]
+
+create a contaniner file
+#+begin_src bash
+  touch vault.img
+
+  chattr +C vault.img # for btrfs only to disable NoCow
+#+end_src
+
+allocate storage to the vault, choose it wisely its not that simple to resize later
+#+begin_src bash
+  fallocate -l 20G vault.img
+#+end_src
+
+encrypt the container with luks
+#+begin_src bash
+  cryptsetup luksFormat vault.img
+#+end_src
+
+you can open and close the vault using cryptsetup command
+#+begin_src bash
+  # to open
+  sudo cryptsetup open vault.img vault
+
+  # to close
+  sudo cryptsetup close vault
+#+end_src
+
+now since the vault is open and encrypted, but what is a contiainer without a file system
+we are going to make the container ext4 you can anything else.
+#+begin_src bash
+  sudo mkfs.ext4 /dev/mapper/vault 
+#+end_src
+
+well thats it for it to start working and showing up in your file manager but you can mount it to a mount point like
+#+begin_src bash
+  sudo mount /dev/mapper/vault /mnt/vault
+#+end_src
+
+
+add alias to open and close vaults
+#+begin_src bash
+  alias vaultmount="sudo cryptsetup open ~/.local/state/vault.img vault && sudo mount /dev/mapper/vault /mnt/vault"
+  alias vaultumount="sudo umount /mnt/vault && sudo cryptsetup close vault"
+#+end_src
+
+thats it everything is done now, you can add it in fstab to auto mount but i dont want to do that.
