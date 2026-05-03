@@ -1,5 +1,7 @@
+import Heading from '@/app/components/ui/heading';
+
 export default function notfound() {
     return (
-        <h1>page not found</h1>
+        <Heading>page not found</Heading>
     )
 }

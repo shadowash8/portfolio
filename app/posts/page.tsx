@@ -1,9 +1,10 @@
 import PostsList from "@/app/components/posts";
+import Heading from "@/app/components/ui/heading";
 
 export default async function PostsPage() {
     return (
         <section>
-            <h1 className="mb-4 text-2xl font-semibold tracking-tighter">Posts</h1>
+            <Heading>Posts</Heading>
             <PostsList />
         </section >
     );

@@ -1,4 +1,5 @@
 import CustomLink from '@/app/components/ui/links'
+import Heading from '@/app/components/ui/heading';
 
 const socialLinks = {
     "https://github.com/shadowash8": {
@@ -42,11 +43,11 @@ const peopleLinks = {
 export default function LinksPage() {
     return (
         <section>
-            <h1 className="font-semibold text-2xl mb-8 tracking-tighter">links</h1>
+            <Heading>links</Heading>
 
 
             <div className="my-8">
-                <h2 className="text-xl mb-4 tracking-tighter">socials</h2>
+                <Heading level={2}>socials</Heading>
                 <div className="flex flex-col gap-6">
                     {Object.entries(socialLinks).map(([href, { name, description }]) => (
                         <div key={href} className="flex flex-col">
@@ -63,9 +64,10 @@ export default function LinksPage() {
                 </div>
             </div>
 
+            <hr className="my-8 h-px border-0 bg-neutral-800" />
 
             <div>
-                <h2 className="text-xl mb-4 tracking-tighter">cool people</h2>
+                <Heading level={2}>cool people</Heading>
                 <div className="flex flex-col flex-wrap gap-2">
                     {Object.entries(peopleLinks).map(([href, { name, description }]) => (
                         <div key={href} className="flex flex-col">

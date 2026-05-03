@@ -1,9 +1,10 @@
 import ProjectsList from "@/app/components/projects";
+import Heading from "@/app//components/ui/heading";
 
 export default async function ProjectsPage() {
     return (
         <section>
-            <h1 className="mb-4 text-2xl font-semibold tracking-tighter">Projects</h1>
+            <Heading>Projects</Heading>
             <ProjectsList />
         </section >
     );
