@@ -4,7 +4,7 @@ import Heading from "@/app//components/ui/heading";
 export default async function ProjectsPage() {
     return (
         <section>
-            <Heading>Projects</Heading>
+            <Heading>projects</Heading>
             <ProjectsList />
         </section >
     );

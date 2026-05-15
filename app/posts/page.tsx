@@ -4,7 +4,7 @@ import Heading from "@/app/components/ui/heading";
 export default async function PostsPage() {
     return (
         <section>
-            <Heading>Posts</Heading>
+            <Heading>posts</Heading>
             <PostsList />
         </section >
     );

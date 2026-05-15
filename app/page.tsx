@@ -16,14 +16,14 @@ export default function HomePage() {
 
             <div className="mb-12">
                 <Heading level={2}>
-                    Posts
+                    posts
                 </Heading>
                 <PostsList />
             </div>
 
             <div className="mb-12">
                 <Heading level={2}>
-                    Projects
+                    projects
                 </Heading>
                 <ProjectsList />
             </div>

@@ -4,16 +4,16 @@ import Image from 'next/image';
 import Heading from "@/app/components/ui/heading";
 
 export default function ShotsPage() {
-    // 1. Resolve the path to the public/shots folder
+    // Resolve the path to the public/shots folder
     const shotsDirectory = path.join(process.cwd(), 'public/shots');
 
-    // 2. Read the filenames, filtering for .jpg files
+    // Read the filenames, filtering for .jpg files
     const filenames = fs.readdirSync(shotsDirectory);
     const photos = filenames.filter((file) => file.endsWith('.jpg'));
 
     return (
         <section>
-            <Heading>Shots</Heading>
+            <Heading>shots</Heading>
 
             <div className="grid grid-cols-1 gap-4">
                 {photos.map((src) => (
