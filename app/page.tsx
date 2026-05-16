@@ -10,7 +10,7 @@ export default function HomePage() {
                     A S H
                 </Heading>
                 <p>
-                    hey, just a random teenager who likes to code and tinker with linux. i just build software i need and for others
+                    hey, just a random teenager who likes to code and tinker with linux. i just build software i need and for others. i believe in free software.
                 </p>
             </header>
 
