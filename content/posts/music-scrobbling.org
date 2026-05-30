@@ -1,0 +1,23 @@
+#+TITLE: music scrobbling
+#+DATE: [2026-05-30 Sat 16:15]
+
+* what is scrobbling
+music scrobbling essentially is like keeping a log of what you listen to and getting suggestions from it. scrobbling is a optional feature when you self host your music, but is essential when you want to track what you listen to.
+
+* what to use for scrobbling
+you can do music scrobbling locally (idk how but i think u can), but its just a bunch of logs, so let someone else do this right? there are mainly 2 "big" players in this game.
+1. [[https://www.last.fm/][last.fm]] - the propritery one, but best algorithm
+2. [[https://listenbrainz.org/][listenbrainz]] - the opensource alternative but arguably worse
+i choose last.fm for scrobbling because there are virtually infinite tools for it.
+
+* the tools i use for desktop are:
+- *mpd*: to play music
+- *rmpc*: beautlify tui for mpd
+- [[https://github.com/shadowash8/yams][yams]] - my own fork for yet another mpd scrobbler
+  connects to last.fm and scrobbles 
+
+* the tools i use for mobile are:
+- *music app*: changes every week
+- *piano scrobbler*: connects to last.fm and looks in notifications for songs
+
+thats it for the scrobbling part.
