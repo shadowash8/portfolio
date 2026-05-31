@@ -1,0 +1,193 @@
+#+TITLE: bash bible
+#+DATE: [2026-05-31 Sun 21:51]
+
+this is my bash bible, written by a person with a intermediate knowledge of bash already.
+bash is Bourne Again SHell
+
+* simple shell commands
+- ~sort file~, which prints out the lines of file in sorted order.
+- ~uniq file~, which eliminates consecutive duplicate lines from file.
+- ~head file~ and ~tail file~, which respectively print the first and last few lines of file.
+- ~seq~ print the numbers in between the input and output
+
+* complex patterns
+~grep pattern file~ finds a ~pattern~ in a ~file~. the pattern is a *regular expression*. ~-r~ flag for recursive searches
+
+oh wow ~sed~ is a life saver
+~sed~ is a line editor that changes what you provide line by line in the files provided (can blob files too)
+#+begin_src bash
+  sed -i 's/pattern/replacement/g' file
+#+end_src
+any pattern can also be a regular expression
+~-i~ indicates that rewrite the file with the new substituted content
+
+~find~ command finds well files and folders in the given director
+#+begin_src bash
+  # here is a example of finding flac files in the given directory
+  find . -type f -name "*.flac"
+#+end_src
+
+~awk~ parsing data files (like csv)
+#+begin_src bash
+  # parses the 2nd column seperated by a whitespace
+  awk '{print $2}' file
+
+  # parses the 3rd column sperated by a comma
+  awk -F, '{print $3}' file
+#+end_src
+~-F~ to change the seperator
+
+* variables
+variables are like ~variable=value~ and note there should be no spaces in between them
+#+begin_src bash
+  var1=value
+  echo $var1
+  # output: value
+
+  files=$(ls)
+  echo $files
+#+end_src
+* operators
+- ~>~ to write std input to a file
+- ~2>~ to write std error output to a file
+- ~<~ feeds the file contents into a commands std input 
+- ~>>~ to append a entry to the file
+- ~&&~ AND operator, only runs next command if previous one is sucessful
+- ~||~ OR operator, only runs next command if previous one is unsucessful
+#+begin_src bash
+  date > today.txt
+  cat <today.txt
+
+  date >> today.txt
+  cat <today.txt
+
+  awww img $(<~/.cache/ashwal/ashwal) -t none
+
+  grep -q 2026 today.txt && echo "Pattern found"
+  grep -q 2020 today.txt || echo "Not found"
+#+end_src
+
+
+* conditionals
+#+begin_src bash
+  if grep 2026 today.txt; then echo "wake up its 2026!"; fi
+#+end_src
+* loops
+#+begin_src bash
+  # for loop
+  for varname in a b c d; do echo "$varname"; done
+  for varname in $(seq 1 2 10); do echo "$varname"; done
+  # while loop
+  while grep 2026 today.txt; do echo "it's still 2026"; date > today.txt; sleep 60; done
+#+end_src
+
+* arguments
+the shell programs receive a list of arguments when they are executed.
+
+example: the arguments for ~ls~ are ~['-l', 'folder/']~
+#+begin_src bash
+  ls -l folder/
+#+end_src
+
+* globbing
+#+begin_src bash
+  # all python files in all folders
+  ls **/*.py
+
+  # convert jpg image to png
+  convert image.{jpg,png}
+
+  # move all py and sh files to folder
+  mv *{.py,.sh} folder
+#+end_src
+* piping
+#+begin_src bash
+  ls | grep .org
+#+end_src
+
+* environment variables
+To change values on the fly or getting some predefined values set by the user or the shell
+#+begin_src bash
+  date
+
+  TZ=Asia/Tokyo date
+#+end_src
+
+#+RESULTS:
+| Sat | May | 30 | 09:45:41 | AM | IST | 2026 |
+| Sat | May | 30 | 01:15:41 | PM | JST | 2026 |
+
+* return code
+- ~0~ the process was sucessful
+- ~!0~ the process was unsucessful
+
+you can get the error code of the last process using the ~$?~ varibale
+#+begin_src bash
+  # sucessful
+  ls | grep .org > /dev/null
+  echo $?
+
+  # unsucessful
+  ls amithere 2> /dev/null
+  echo $?
+#+end_src
+
+#+RESULTS:
+| 0 |
+| 2 |
+* signals
+signals are a special communication mechanism. when a process receives a signal it stops its execution, deals with the signal and potentially changes the flow of execution based on the information that the signal delivered. For this reason, signals are software interrupts.
+
+basic signals
+- ~SIGINT~: interrupts the process gracefully
+  using ~C-c~ in terminal
+- ~SIGQUIT~: quits the process and dumps core
+  using ~C-\~ in terminal
+- ~SIGTSTP~: suspends a process
+  using ~C-z~ in terminal
+- ~SIGKILL~: force kill a process
+- ~SIGCONT~: continue a process
+- ~SIGHUP~: hangup a process
+
+a python loop to ignore ~SIGINT~
+#+begin_src python
+  #!/usr/bin/env python
+  import signal, time
+
+  def handler(signum, time):
+      print("\nI got a SIGINT, but I am not stopping")
+
+  signal.signal(signal.SIGINT, handler)
+  i = 0
+  while True:
+      time.sleep(.1)
+      print("\r{}".format(i), end="")
+      i += 1
+#+end_src
+
+example session:
+#+begin_src bash
+  $ sleep 1000
+  ^Z
+  [1]  + 18653 suspended  sleep 1000
+
+  $ nohup sleep 2000 &
+  [2] 18745
+  appending output to nohup.out
+
+  $ jobs
+  [1]  + suspended  sleep 1000
+  [2]  - running    nohup sleep 2000
+
+  $ kill -SIGHUP %1
+  [1]  + 18653 hangup     sleep 1000
+
+  $ kill -SIGHUP %2   # nohup protects from SIGHUP
+
+  $ jobs
+  [2]  + running    nohup sleep 2000
+
+  $ kill %2
+  [2]  + 18745 terminated  nohup sleep 2000
+#+end_src
+
