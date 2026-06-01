@@ -1,0 +1,59 @@
+#+TITLE: search engines
+#+DATE: [2026-06-01 Mon 11:34]
+
+* the lore
+search engines are one of if not the most important tool on the internet, without it the internet wouldnt be the same. but overtime, there has been a clear monopoly of one company in this space ~google~ controling around 90% of the market.
+
+* the options
+so as a part of de-googling my tech, i am off google as a search engine. there are a lot of options to choose from, but none of them are as perfect as google or are just ugly.
+1. [[https://duckduckgo.com][duckduckgo]] - mostly privacy focused but not the best results
+   - its based on bing for search results
+   - has a ~ai~ interface with couple of models
+   - best set it and forget it option
+
+2. [[https://www.startpage.com/][startpage]] - the privacy beast
+   - it is mostly the most private search engine u can find
+   - has a anonymous view to view webpages
+   - could be annoying for having support banners
+
+3. [[https://git.bwaaa.monster/omnisearch/about/][omnisearch]] - a metasearch engine with a clean design
+   - it is written in ~C~
+   - it combines results from ~ddg, startpage, yahoo, mojeek~
+   - it is self hosted
+   - per engine results
+   - beautiful design
+
+* the choice
+after testing all three of these and more, i ultimately settled with ~omnisearch~ as my daily driver. it was the best option than the other ones because it essentially combined results from 4 search engines into one, giving the best possible result /most of the time./
+
+i decided to host a instance of ~omnisearch~ per device, as i have no "server" which is going 24/7 and it barely uses any resources
+
+installing it is just compling a ~C~ program.
+
+but first install ~libbeaker~
+#+begin_src bash
+  git clone https://git.bwaaa.monster/beaker
+  cd beaker
+  make
+  sudo make install
+#+end_src
+
+now install ~omnisearch~
+#+begin_src bash
+  git clone https://git.bwaaa.monster/omnisearch
+  cd omnisearch
+  make
+  sudo make install-<init>
+#+end_src
+replace <init> with your init system (openrc, systemd, runit, s6, dinit, launchd).
+
+so after installing for your init system, the ~omnisearch~ process will start at boot. ~omnisearch~ starts the webpage at ~http://localhost:8087~ 
+
+you can add it as a search engine in your browser
+#+begin_src bash
+  # URL with %s in place of search term 
+  http://localhost:8087/search?q=%s
+#+end_src
+
+[[/posts/search-engines/omnisearch.png]]
+
