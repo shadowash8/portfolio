@@ -28,6 +28,7 @@ after testing all three of these and more, i ultimately settled with ~omnisearch
 
 i decided to host a instance of ~omnisearch~ per device, as i have no "server" which is going 24/7 and it barely uses any resources
 
+** install omnisearch
 installing it is just compling a ~C~ program.
 
 but first install ~libbeaker~
@@ -49,11 +50,15 @@ replace <init> with your init system (openrc, systemd, runit, s6, dinit, launchd
 
 so after installing for your init system, the ~omnisearch~ process will start at boot. ~omnisearch~ starts the webpage at ~http://localhost:8087~ 
 
+** integrate omnisearch
 you can add it as a search engine in your browser
 #+begin_src bash
   # URL with %s in place of search term 
   http://localhost:8087/search?q=%s
 #+end_src
 
+you can customize ~omnisearch~ using the config file located at ~/etc/omnisearch/config.ini~
+
+this is omnisearch looks
 [[/posts/search-engines/omnisearch.png]]
 
