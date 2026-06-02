@@ -6,6 +6,6 @@ export default async function PostsPage() {
         <section>
             <Heading>posts</Heading>
             <PostsList />
-        </section >
+        </section>
     );
 }

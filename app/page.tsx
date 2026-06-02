@@ -18,7 +18,7 @@ export default function HomePage() {
                 <Heading level={2}>
                     posts
                 </Heading>
-                <PostsList />
+                <PostsList limit={5} />
             </div>
 
             <div className="mb-12">
