@@ -10,6 +10,11 @@ const font = Lora({
 export const metadata: Metadata = {
     title: "A S H",
     description: "my website",
+    alternates: {
+        types: {
+            'application/atom+xml': '/atom.xml',
+        },
+    },
 };
 
 export default function RootLayout({
