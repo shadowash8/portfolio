@@ -21,7 +21,7 @@ export default function HomePage() {
                 <PostsList limit={5} />
             </div>
 
-            <div className="mb-12">
+            <div>
                 <Heading level={2}>
                     projects
                 </Heading>
