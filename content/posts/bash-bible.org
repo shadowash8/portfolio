@@ -1,4 +1,5 @@
 #+TITLE: bash bible
+#+DESCRIPTION: only thing u need to refer to revive your bash knowledge.
 #+DATE: [2026-05-31 Sun 21:51]
 
 this is my bash bible, written by a person with a intermediate knowledge of bash already.

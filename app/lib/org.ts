@@ -60,6 +60,7 @@ export async function getPostBySlug(slug: string) {
             slug: realSlug,
             content: result.value.toString(),
             title: (result.data as any)?.title || realSlug,
+            description: (result.data as any)?.description || '',
             date: getReadableDate((result.data as any)?.date) || null,
         };
     } catch (e) {

@@ -1,4 +1,5 @@
 #+TITLE: emacs on android
+#+DESCRIPTION: my weird emacs on android setup.
 #+DATE: [2026-03-08 Thu 07:20]
 
 

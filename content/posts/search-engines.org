@@ -1,4 +1,5 @@
 #+TITLE: search engines
+#+DESCRIPTION: down the self hosting rabbit hole we go with self hosted metasearch engine.
 #+DATE: [2026-06-01 Mon 11:34]
 
 * the lore

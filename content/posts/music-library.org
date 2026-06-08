@@ -1,4 +1,5 @@
 #+TITLE: music library
+#+DESCRIPTION: my overly complicated self hosted music library.
 #+DATE: [2026-03-21 Sat 07:20]
 
 * overview

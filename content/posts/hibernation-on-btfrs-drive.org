@@ -1,4 +1,5 @@
 #+TITLE: hibernation on btrfs
+#+DESCRIPTION: a guide to setup hibernation on a btrfs system.
 #+DATE: [2026-03-03 Tue 07:20]
 
 * limitations

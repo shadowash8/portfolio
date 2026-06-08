@@ -1,4 +1,5 @@
 #+TITLE: music scrobbling
+#+DESCRIPTION: down the self hosting music library we go with scrobbling music.
 #+DATE: [2026-05-30 Sat 16:15]
 
 * what is scrobbling

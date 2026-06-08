@@ -1,4 +1,5 @@
 #+TITLE: personalized directory
+#+DESCRIPTION: a guide for personalized xdg folders.
 #+DATE: [2026-03-09 Mon 08:00]
 
 create a file =~/.config/user-dirs.dirs=

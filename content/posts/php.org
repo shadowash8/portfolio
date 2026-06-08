@@ -1,4 +1,5 @@
 #+TITLE: php: a guide
+#+DESCRIPTION: why are you learning php in the big 26.
 #+DATE: [2026-02-20 Fri 07:20]
 
 * installation

@@ -1,4 +1,5 @@
 #+TITLE: luks encrypted container
+#+DESCRIPTION: a guide to setup a luks encrypted container on linux.
 #+DATE: [2026-05-02 Sat 09:00]
 
 create a contaniner file
