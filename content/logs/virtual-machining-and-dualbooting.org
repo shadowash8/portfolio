@@ -1,0 +1,32 @@
+#+TITLE: virtual machining and dualbooting
+#+DESCRIPTION: trying out different distros mainly void linux 
+#+DATE: [2026-07-02 Thu 21:51]
+
+so i got a external nvme ssd in a cage. i wanted to install a linux distro on this, so i went with void linux ofc. but i was too scared to run the ~void-installer~ on bare hardware if i nuked the 512gb ssd, cause ive seen people mounting/passing a external SSD to qemu and installing linux through qemu and then running it on bare hardware after installing it.
+
+i had a ~void linux base glibc~ iso i got couple of days ago and i somehow got the drive mounted using the xml file.
+i also got the firmware changed from ~bios~ to ~uefi~ so that i can get a uefi grub image that i can boot on real hardware.
+after all that crazy stuff out of the way i just booted into void linux, ran the installer i made the partitons as:
+#+begin_src
+- 256GB Kioxia NVME SSD
+  - ~/boot/efi~ 1gb vfat
+  - ~/~ 64gb ext4
+  - ~/home~ 177gb ext4 
+#+end_src
+
+yeah that was all done configuring in around 5-10 minutes, and then i clicked install and wolah the install was just copying stuff over from the iso to the drive as it was a offline install and it barely took around 3 minutes.
+
+i tried booting into the system but fuck the boot entries got fucked somehow, cause maybe it was a external drive gemini said. so i got back into the iso, and mounted the drive back but i messed up and mounted boot part before mounting the root part so it bit me back in a while wondering why isnt grub finding it. so i chroot into it then it fucking refusing to install grub on the /boot/efi cause it wasnt vfat it says. so i had to reformat the partition and then i realized i mounted them in the wrong order lol.
+
+i did mount them in correct order and added a ~--external~ and a ~--no-nvram~ flag to make it bootable from a usb or smthing, but that worked!!!, now i can boot into void linux!!
+but now fuck it doesnt even go to tty, cause why? my fstab file is wrong cause remember i reformatted boot part? so the uuid changed so i had to change the uuid to the newer one and now peakkk void linux finally boots normally.
+
+new problem, now i have somehow booted voidlinux on bare hardware, but we dont have a ethernet cable so we need to use wifi, but u cant connect to wifi with no network manager not iwd, u could with wpa_supplicant only but i didnt care, i just plugged the phone and used usb tethering to get the network working like a charm!! 
+i got all the packages i needed, got iwd and somehow got wifi working by removing wpa and dhcpcd and only using iwd as a sole netowrk thingy and setting dns nameserver in ~/etc/resolv.conf~ itself.
+and wifi was working now.
+
+but now we are still in the tty, we need some gui to work with, river suprisingly was already on the void repos, so i got river, had to fix some dbus issues and get elogind but those were small stuff to work on and clearly mentioned on the docs. yep and river opened up like a charm, now we got the compositor working, now i needed a window manager for river, so i got zig and janet, both suprisingly on their repos and cloned ~ashrwm~ but for fuck sake i forogt these guys got zig 0.13 instead of the fucking latest zig version lol.
+
+so i gave up getting zvm and setting zig using that and just got ~niri~ instead for the change ofc, and ngl, ive been falling in love with niri bro, this is getting better and better over time. i only have got firefox, thunar, fuzzel and foot installed in that install, but niri was buttery smooth.
+
+another hassel was to get pipewire working, so in systemd distros, pipewire magically startsup when u launch a session, but apparently on runit u need to run it manually, so i added that in niri startup and wolah it was working like a charm, my volume keys and the brightness keys too!!
