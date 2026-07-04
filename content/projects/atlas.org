@@ -1,0 +1,24 @@
+#+TITLE: atlas
+#+URL: https://github.com/shadowash8/atlas
+#+TAGS: mobile-app, react-native, sqlite, expo 
+
+atlas is a lightweight application for storing snippets of information, links, notes, and references in one place. every item is stored locally using sqlite, making the app fast, private, and available offline.
+
+** features
+- store artifacts with a title and description
+- organize artifacts using tags
+- instantly search by id, title, description, or tags
+- edit existing artifacts
+- delete artifacts with confirmation
+- automatically detect and open links inside descriptions
+- built with material 3 components and dynamic theming
+- local sqlite database for offline storage
+
+** screenshots
+| Home                     | Search                     | Add Artifact                     |
+|--------------------------+----------------------------+----------------------------------|
+| [[/projects/atlas/home.png]] | [[/projects/atlas/search.png]] | [[/projects/atlas/add-artifact.png]] |
+
+| Edit Artifact                     | Edit Artifact Bottomsheet            |
+|-----------------------------------+--------------------------------------|
+| [[/projects/atlas/edit-artifact.png]] | [[/projects/atlas/edit-bottomsheet.png]] |

@@ -1,4 +1,4 @@
-#+TTILE: organize
+#+TITLE: organize
 #+URL: https://github.com/shadowash8/organize
 #+TAGS: React Native, Expo, uniorg
 

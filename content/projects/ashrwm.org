@@ -1,4 +1,4 @@
-#+TTILE: ashrwm 
+#+TITLE: ashrwm 
 #+URL: https://github.com/shadowash8/ashrwm
 #+TAGS: wayland, linux, window manager, river-based, janet
 
