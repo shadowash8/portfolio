@@ -1,7 +1,6 @@
 import fs from 'fs';
 import path from 'path';
 import Image from 'next/image';
-import Heading from "@/app/components/ui/heading";
 
 export default function ShotsPage() {
     // Resolve the path to the public/shots folder
@@ -13,8 +12,11 @@ export default function ShotsPage() {
 
     return (
         <section>
-            <Heading>shots</Heading>
-
+            <header className="mb-4">
+                <p>
+                    shots ive taken and edited on my phone
+                </p>
+            </header>
             <div className="grid grid-cols-1 gap-4">
                 {photos.map((src) => (
                     <div key={src} className="break-inside-avoid">

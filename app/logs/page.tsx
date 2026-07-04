@@ -1,10 +1,13 @@
 import LogsList from "@/app/components/logs";
-import Heading from "@/app/components/ui/heading";
 
 export default async function LogsPage() {
     return (
         <section>
-            <Heading>logs</Heading>
+            <header className="mb-4">
+                <p>
+                    me experimenting on tech and writing logs about in emacs.
+                </p>
+            </header>
             <LogsList />
         </section>
     );

@@ -6,10 +6,10 @@ export function Footer() {
             <div className="tracking-tight flex flex-col">
                 built with love.
                 <div className="flex flex-row text-neutral-400">
-                    <CustomLink href="https://github.com/shadowash8/portfolio" className="pr-2 underline">
+                    <CustomLink href="https://github.com/shadowash8/portfolio" className="pr-2 hover:underline opacity-60 hover:opacity-100">
                         source
                     </CustomLink>
-                    <CustomLink href="/atom.xml" className="pr-2 underline">
+                    <CustomLink href="/atom.xml" className="pr-2 hover:underline opacity-60 hover:opacity-100">
                         atom
                     </CustomLink>
                 </div>

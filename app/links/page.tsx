@@ -43,10 +43,7 @@ const peopleLinks = {
 export default function LinksPage() {
     return (
         <section>
-            <Heading>links</Heading>
-
-
-            <div className="my-8">
+            <div>
                 <Heading level={2}>socials</Heading>
                 <div className="flex flex-col gap-4">
                     {Object.entries(socialLinks).map(([href, { name, description }]) => (

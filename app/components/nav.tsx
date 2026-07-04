@@ -1,11 +1,13 @@
+"use client"
+import { usePathname } from 'next/navigation'
 import CustomLink from '@/app/components/ui/links'
 
 const navItems = {
-    '/': {
-        name: 'home',
-    },
     '/posts': {
         name: 'posts',
+    },
+    '/logs': {
+        name: 'logs',
     },
     '/projects': {
         name: 'projects',
@@ -16,26 +18,31 @@ const navItems = {
     '/links': {
         name: 'links',
     },
-    '/logs': {
-        name: 'logs',
-    },
+
 }
 
 export function Navbar() {
+    const pathname = usePathname()
     return (
-        <aside className="-ml-[8px] mb-16 tracking-tight">
+        <aside className="mt-16 mb-8 tracking-tight">
             <div className="lg:sticky lg:top-20">
                 <nav
-                    className="flex flex-row items-start relative px-0 pb-0 fade md:overflow-auto scroll-pr-6 md:relative"
+                    className="relative md:overflow-auto scroll-pr-6 md:relative"
                     id="nav"
                 >
-                    <div className="flex flex-row space-x-0 pr-10">
+                    <CustomLink href="/" className="text-4xl font-semibold">A S H</CustomLink>
+                    <div className="flex flex-row gap-4 mt-2">
                         {Object.entries(navItems).map(([path, { name }]) => {
+                            const isActive = pathname.startsWith(path)
+
                             return (
                                 <CustomLink
                                     key={path}
                                     href={path}
-                                    className="py-1 px-2 m-1"
+                                    className={`py-1 transition-all ${isActive
+                                        ? "underline decoration-2 underline-offset-4 font-medium"
+                                        : "opacity-60 hover:opacity-100"
+                                        }`}
                                 >
                                     {name}
                                 </CustomLink>
