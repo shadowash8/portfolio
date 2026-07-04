@@ -12,14 +12,14 @@ export default function HomePage() {
             </header>
 
             <div className="mb-8">
-                <Heading level={2}>
+                <Heading level={2} className="mb-4">
                     posts
                 </Heading>
                 <PostsList limit={5} />
             </div>
 
             <div>
-                <Heading level={2}>
+                <Heading level={2} className="mb-4">
                     projects
                 </Heading>
                 <ProjectsList />

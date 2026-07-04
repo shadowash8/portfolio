@@ -18,6 +18,9 @@ const navItems = {
     '/links': {
         name: 'links',
     },
+    '/about': {
+        name: 'about'
+    }
 
 }
 

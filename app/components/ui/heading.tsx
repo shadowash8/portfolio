@@ -2,10 +2,11 @@ type HeadingLevel = 1 | 2 | 3 | 4 | 5 | 6;
 
 interface HeadingProps {
     level?: HeadingLevel;
+    className?: string;
     children: React.ReactNode;
 }
 
-export default function Heading({ level = 1, children }: HeadingProps) {
+export default function Heading({ level = 1, className, children }: HeadingProps) {
     const Tag = `h${level}` as `h${HeadingLevel}`;
 
     const sizes: Record<HeadingLevel, string> = {
@@ -18,7 +19,7 @@ export default function Heading({ level = 1, children }: HeadingProps) {
     };
 
     return (
-        <Tag className={`${sizes[level]} font-semibold mb-8 tracking-tighter`}>
+        <Tag className={`${sizes[level]} font-semibold tracking-tighter  ${className}`}>
             {children}
         </Tag>
     );

@@ -44,7 +44,7 @@ export default function LinksPage() {
     return (
         <section>
             <div>
-                <Heading level={2}>socials</Heading>
+                <Heading level={2} className="mb-4">socials</Heading>
                 <div className="flex flex-col gap-4">
                     {Object.entries(socialLinks).map(([href, { name, description }]) => (
                         <div key={href} className="flex flex-col">
@@ -64,7 +64,7 @@ export default function LinksPage() {
             <hr className="my-8 h-px border-0 bg-neutral-800" />
 
             <div>
-                <Heading level={2}>cool people</Heading>
+                <Heading level={2} className="mb-4">cool people</Heading>
                 <div className="flex flex-col gap-4">
                     {Object.entries(peopleLinks).map(([href, { name, description }]) => (
                         <div key={href} className="flex flex-col">
