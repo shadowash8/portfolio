@@ -5,7 +5,7 @@ export default async function ProjectsPage() {
         <section>
             <header className="mb-4">
                 <p>
-                    cool projects ive made and use in my daily lives.
+                    cool projects ive made.
                 </p>
             </header>
             <ProjectsList />

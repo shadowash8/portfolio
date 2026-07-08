@@ -14,7 +14,7 @@ export default function ShotsPage() {
         <section>
             <header className="mb-4">
                 <p>
-                    shots ive taken and edited on my phone
+                    some photos i took
                 </p>
             </header>
             <div className="grid grid-cols-1 gap-4">
