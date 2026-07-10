@@ -1,0 +1,39 @@
+#+TITLE: river and its limitations
+#+DESCRIPTION: my obsession with window managers
+#+DATE: [2026-07-06 Mon 13:52]
+
+* whats the problem
+[[https://codeberg.org/river/river][river]] is a non-monolithic Wayland compositor. it seperates the compositor and the window manager in Wayland. it is a amazing idea
+ive build a river window manager called [[https://github.com/shadowash8/ashrwm][ashrwm]] written in janet and build using zig. i am very proud of where i have gotten this project, to a stable state
+there are some rough edges in this but i really love it, you get the non-monolithic structure of the X server while being in a secure wayland session.
+
+but under all this shiny things, there are some limitations for what ~river~ can do. so essentially now a river window manager works is that it uses the ~river-window-management-v1~ protocol to manage the windows and change some options. but this protocol does not give any way to add rounded corners, opacity to windows or blur to windows. it could be added in ~river~, update the protocol and wolah it can defo be worked on, but the ~river~ dev isaac does not like the so called "eye candy" and is not keen to adding that to the compositor, atleast having rounded corners and opacity was a must for me, it just looks good.
+
+
+* the solution
+i could actually just fork river and add that into river itself and call it ~riverfx~ like ~swayfx~, but that is a big job i dont know how to accomplish that ngl.
+instead of relying on river to do it i just forked another wayland compositor which had all the base stuff i needed,
+
+it was [[https://github.com/nikoloc/mwc][mwc]] it had everything i needed
+- [X] wayland compositor
+- [X] tiling wm
+- [X] layers and everything implemented
+- [X] eye-candy with swayfx
+- [X] animations
+with bonus that its written in C and already has a IPC of some kind
+
+the only thing i have to do is since the project is more or less dead for a year, i had to get wlroots and scenefx to a decently new state which is swayfx 0.4 which requires wlroots 0.19.
+
+* the plan
+i am not abandoning ~ashrwm~, this is still the best wm ive made, and is still maintianed, ~ashwc~ is a experiemnt if i complete it or ragequit.
+
+things i have to do are:
+- [X] update dependencies
+- [X] multiple layouts
+  - master layout
+  - grid layout
+  - monocle layout
+- [ ] Bar like waybar or quickshell
+- and the extra stuff i find in the wild
+
+github: [[https://github.com/shadowash8/ashwc][https://github.com/shadowash8/ashwc]]
