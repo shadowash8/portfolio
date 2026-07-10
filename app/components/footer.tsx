@@ -2,7 +2,7 @@ import CustomLink from '@/app/components/ui/links'
 
 export function Footer() {
     return (
-        <footer className="mt-16">
+        <footer className="mt-10 mb-16">
             <div className="tracking-tight flex flex-col">
                 built with love.
                 <div className="flex flex-row text-neutral-400">

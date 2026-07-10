@@ -27,8 +27,8 @@ export default function RootLayout({
         <html
             lang="en"
         >
-            <body className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-8`}>
-                <main className="flex-auto min-w-0 my-6 flex flex-col px-2 md:px-0">
+            <body className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-4`}>
+                <main className="flex-auto min-w-0 my-4 flex flex-col px-2 md:px-0">
                     <Navbar />
                     {children}
                     <Footer />

@@ -1,6 +1,7 @@
 import PostsList from "@/app/components/posts";
 import ProjectsList from "@/app/components/projects";
 import Heading from "@/app/components/ui/heading";
+import LogsList from "./components/logs";
 
 export default function HomePage() {
     return (
@@ -18,11 +19,18 @@ export default function HomePage() {
                 <PostsList limit={5} />
             </div>
 
-            <div>
+            <div className="mb-8">
                 <Heading level={2} className="mb-4">
                     projects
                 </Heading>
                 <ProjectsList />
+            </div>
+
+            <div>
+                <Heading level={2} className="mb-4">
+                    logs
+                </Heading>
+                <LogsList />
             </div>
         </section>
     );
