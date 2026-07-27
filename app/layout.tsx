@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import { Navbar } from './components/nav'
+import { Navbar } from "./components/nav";
 import { Footer } from "./components/footer";
+import Grain from "./components/grain";
 import "./globals.css";
 
 const font = Lora({
@@ -13,7 +14,7 @@ export const metadata: Metadata = {
     description: "my website",
     alternates: {
         types: {
-            'application/atom+xml': '/atom.xml',
+            "application/atom+xml": "/atom.xml",
         },
     },
 };
@@ -24,11 +25,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html
-            lang="en"
-        >
-            <body className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-4`}>
+        <html lang="en">
+            <body
+                className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-4`}
+            >
                 <main className="flex-auto min-w-0 my-4 flex flex-col px-2 md:px-0">
+                    <Grain opacity={0.05} fps={10} grainSize={2} />
                     <Navbar />
                     {children}
                     <Footer />
