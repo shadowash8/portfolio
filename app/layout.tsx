@@ -1,39 +1,42 @@
 import type { Metadata } from "next";
 import { Lora } from "next/font/google";
-import { Navbar } from './components/nav'
+import { Navbar } from "./components/nav";
 import { Footer } from "./components/footer";
+import Grain from "./components/grain";
 import "./globals.css";
 
 const font = Lora({
-    subsets: ["latin"],
+  subsets: ["latin"],
 });
 
 export const metadata: Metadata = {
-    title: "A S H",
-    description: "my website",
-    alternates: {
-        types: {
-            'application/atom+xml': '/atom.xml',
-        },
+  title: "A S H",
+  description: "my website",
+  alternates: {
+    types: {
+      "application/atom+xml": "/atom.xml",
     },
+  },
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html
-            lang="en"
-        >
-            <body className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-4`}>
-                <main className="flex-auto min-w-0 my-4 flex flex-col px-2 md:px-0">
-                    <Navbar />
-                    {children}
-                    <Footer />
-                </main>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body
+        className={`${font.className} antialiased max-w-xl mx-4 md:mx-auto my-4`}
+      >
+        <main className="flex-auto min-w-0 my-4 flex flex-col px-2 md:px-0">
+          <div className="fixed inset-0 pointer-events-none bg-grid-pattern -z-10" />
+          <Grain opacity={0.05} fps={10} grainSize={2} />
+          <Navbar />
+          {children}
+          <Footer />
+        </main>
+      </body>
+    </html>
+  );
 }
