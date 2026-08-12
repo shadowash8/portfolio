@@ -1,0 +1,70 @@
+#+TITLE: ashwc
+#+URL: https://github.com/shadowash8/ashwc
+#+TAGS: wayland, linux, compositor, c, eye-candy
+
+A minimal wayland compositor with various layouts, animations and all the eye-candy.
+
+** features
+
+- tiling and floating toplevels
+- master layout with support for multiple masters, ideal for wide monitors
+- keyboard focused workflow
+- gestures support for touchpads
+- great multitasking with multimonitor and workspaces support
+- smooth and customizable animations
+- easy configuration with hot reloading on save
+- eye-candy (opacity, blur, rounded corners and shadows)
+- portals and an ipc for integrating with other apps
+
+** install
+
+*** AUR
+#+BEGIN_SRC bash
+paru -S ashwc
+#+END_SRC
+
+*** dependencies
+- meson*
+- ninja*
+- wayland-protocols*
+- wayland
+- libinput
+- libdrm
+- pixman
+- libxkbcommon
+- wlroots 20.0
+- scenefx 0.5
+
+~* compile-time dependencies~
+
+*** building
+#+begin_src bash
+  git clone https://github.com/shadowash8/ashwc
+  cd ashwc
+  meson setup build
+  ninja -C build
+#+end_src
+
+** usage
+
+#+begin_src bash
+  ashwc [--debug]
+#+end_src
+
+configuration is done in a configuration file found at ~$XDG_CONFIG_HOME/ashwc/ashwc.conf~ or ~$HOME/.config/ashwc/ashwc.conf~. if no config is found a default config will be used (you need ~ashwcs~ installed, see above).
+
+you can use other configuration location by setting ~ASHWC_CONFIG_PATH~ before running ~ashwc~.
+
+for detailed documentation see [[https://github.com/shadowash8/ashwc/blob/main/default.conf][default.conf]].
+
+** screenshots
+
+[[/projects/ashwc/fetch.png]]
+[[/projects/ashwc/master.png]]
+[[/projects/ashwc/grid.png]]
+
+** community
+join us at [[https://discord.gg/rXpdbaxe2v][discord]]
+
+** acknowledgement
+~ashwc~ is a fork of the amazing [[https://github.com/nikoloc/mwc][mwc]]
