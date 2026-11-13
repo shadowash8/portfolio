@@ -9,8 +9,8 @@ export default function HomePage() {
     <section>
       <header className="mb-4">
         <p>
-          hey, i'm ashwin, a first-year <b>cs</b> student and linux tinkerer. I
-          build the tools I need, share them with others, and run 100% on free
+          hey, i'm ashwin, a first-year <b>cs</b> student and linux tinkerer. i
+          build the tools i need, share them with others, and run 100% on free
           software.
         </p>
       </header>
