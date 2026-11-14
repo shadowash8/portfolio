@@ -12,8 +12,8 @@ export default async function PostsList({ limit }: PostsListProps) {
     <div className="flex flex-col gap-5">
       {displayedPosts.map((post) => (
         <CustomLink key={post.slug} href={`/posts/${post.slug}`}>
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <span className="text-neutral-600 dark:text-neutral-400 tabular-nums">
+          <div className="w-full flex items-baseline gap-x-2">
+            <span className="w-28 shrink-0 text-neutral-600 dark:text-neutral-400 tabular-nums">
               {post.date}
             </span>
             <span>{post.title}</span>

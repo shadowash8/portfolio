@@ -13,8 +13,8 @@ export default async function LogsList({ limit }: LogsListProps) {
     <div className="flex flex-col gap-5">
       {displayedLogs.map((log) => (
         <CustomLink key={log.slug} href={`/logs/${log.slug}`}>
-          <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
-            <span className="text-neutral-600 dark:text-neutral-400 tabular-nums">
+          <div className="w-full flex items-baseline gap-x-2">
+            <span className="w-28 shrink-0 text-neutral-600 dark:text-neutral-400 tabular-nums">
               {log.date}
             </span>
             <span>{log.title}</span>
