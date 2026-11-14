@@ -1,8 +1,8 @@
-import { getAllPosts } from "@/app/lib/org";
+import { getAllEntries } from "@/app/lib/org";
 import { Feed } from 'feed'
 
 export async function GET() {
-    const posts = await getAllPosts()
+    const entries = await getAllEntries()
 
     const feed = new Feed({
         title: 'A S H',
@@ -17,13 +17,15 @@ export async function GET() {
         },
     })
 
-    for (const post of posts) {
+    for (const entry of entries) {
+        const url = `https://shadowash8.netlify.app/${entry.section}/${entry.slug}`
+
         feed.addItem({
-            title: post.title,
-            id: `https://shadowash8.netlify.app/posts/${post.slug}`,
-            link: `https://shadowash8.netlify.app/posts/${post.slug}`,
-            description: post.description || '',
-            date: new Date(post.date ?? new Date()),
+            title: entry.title,
+            id: url,
+            link: url,
+            description: entry.description || '',
+            date: new Date(entry.date ?? new Date()),
         })
     }
 

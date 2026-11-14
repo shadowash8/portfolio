@@ -192,3 +192,16 @@ export async function getAllLogs() {
                 new Date(a.date || 0).getTime(),
         );
 }
+
+export async function getAllEntries() {
+    const [posts, logs] = await Promise.all([getAllPosts(), getAllLogs()]);
+
+    return [
+        ...posts.map((post) => ({ ...post, section: "posts" as const })),
+        ...logs.map((log) => ({ ...log, section: "logs" as const })),
+    ].sort(
+        (a, b) =>
+            new Date(b.date || 0).getTime() -
+            new Date(a.date || 0).getTime(),
+    );
+}
