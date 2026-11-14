@@ -1,0 +1,40 @@
+#+TITLE: first hackathon
+#+DESCRIPTION: just a writeup and what ive lerant from my first hackathon
+#+DATE: [2026-10-23 Fri 18:46]
+
+* introduction
+i just finished my first hackathon and i learnt a lot from it. the hackathon was about integrating AI into a software or a hardware product. our track was software and the idea was to design an app where people can search and get a curated list of all the government schemes and a conversational ai agent to help the user find the right scheme and help in filling the form. not the most unique idea but it wasnt the hardest problem nor the easiest so thats why we chose that problem.
+
+* the tech
+the hackathon wanst like the usual one to build the prototype at the venue in a certain period of time, but you had to get a finished product there and just pitch it. we decided to make a website and a mobile app, with user authentication and syncing. there were 2 people for the development, i was doing the app dev and the database while the other friend was doing the website dev.
+
+
+the tech stack is:
+** mobile app
+- react native
+- expo v56
+- gluestack ui
+- supabase
+- gemini ai model
+
+** website
+- next.js
+- tailwind css
+- supabase
+- gemini ai model
+
+#+begin_comment
+supabase is shared for authentication and chat recall.
+#+end_comment
+
+* the hackathon
+this was a national hackathon hence there were around 110 teams, with 2 judging rounds
+round 1 eliminated all the teams except the top 20 remain, and for round 2 the winner and runner ups will be selected.
+
+our team was the 2nd team in the hall so the round started at 12pm and our judgement started at 12:30, we had each person divided for a ppt but when we spoke to the organizers they recommended to only have 2 people for presentation.
+
+when the judge arrived, we started with the presentation, but 2 slides he already was saying your idea isnt unique there is no point in this lol. started off with a negative point and then asked us to show the prototype, the team leader started with the website presentation, and i took the mobile presentation, went good, showed him the ai features and everything, he started asking questions, we did the best we can and it went well imo, the presentation was a lot of improvising.
+
+we got eliminated in the first round, but we learnt a lot from it.
+- *problem selection matters more than polish:* shipping both web and mobile didn't save a safe, crowded idea, even if its much more polished than a great idea as a prototype
+- *skip the fluff slides:* when judges are impatient, jump straight into the live demo.
